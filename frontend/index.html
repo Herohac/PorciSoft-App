@@ -176,6 +176,79 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Panel de Lotes (oculto por defecto, visible al seleccionar en el menú) -->
+                <div id="lotes-panel" class="content-panel hidden flex-1 flex flex-col">
+                    <header class="bg-white p-6 border-b border-slate-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h2 class="text-2xl font-bold">Gestión de Lotes</h2>
+                                <p class="text-slate-500">Agrupa y organiza tus animales.</p>
+                            </div>
+                            <button id="add-lote-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-colors">
+                                <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                                <span>Nuevo Lote</span>
+                            </button>
+                        </div>
+                    </header>
+
+                    <div class="flex-1 p-6 overflow-y-auto">
+                        <!-- Barra de búsqueda para Lotes -->
+                        <div class="bg-white rounded-lg shadow p-6 mb-6">
+                            <h3 class="font-bold text-lg mb-4">Búsqueda de Lotes</h3>
+                            <div class="relative w-full max-w-xl">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-green-600">
+                                    <i data-lucide="search" class="w-5 h-5"></i>
+                                </span>
+                                <input
+                                    id="lote-search-input"
+                                    type="text"
+                                    placeholder="Buscar por nombre o descripción del lote..."
+                                    class="pl-10 pr-4 py-2 rounded-lg border-2 border-green-400 focus:border-green-600 focus:ring-0 shadow transition-all w-full text-base font-medium bg-slate-50 outline-none"
+                                    style="box-shadow:none;"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-md">
+                            <table class="data-table min-w-full">
+                                <thead id="lote-table-head"></thead>
+                                <tbody id="lote-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modal para crear/editar lote -->
+                    <div id="lote-modal" class="modal-backdrop hidden fixed inset-0 bg-black bg-opacity-30 z-50 items-center justify-center">
+                        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg mx-4">
+                            <div class="flex justify-between items-center border-b pb-3 mb-5">
+                                <h3 id="lote-modal-title" class="text-xl font-bold">Registrar Nuevo Lote</h3>
+                                <button id="close-lote-modal-btn" class="text-slate-500 hover:text-slate-800">&times;</button>
+                            </div>
+                            <form id="lote-form">
+                                <input type="hidden" id="lote_id_form" name="id">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="nombre_lote" class="form-label">Nombre del Lote *</label>
+                                        <input type="text" id="nombre_lote" name="nombre_lote" required class="form-input">
+                                    </div>
+                                    <div>
+                                        <label for="descripcion" class="form-label">Descripción</label>
+                                        <textarea id="descripcion" name="descripcion" rows="3" class="form-input"></textarea>
+                                    </div>
+                                </div>
+                                <div id="lote-form-response" class="mt-4 text-center text-sm font-semibold"></div>
+                                <div class="flex justify-end gap-4 mt-6 border-t pt-4">
+                                    <button type="button" id="cancel-lote-form-btn" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-2 px-4 rounded-lg">Cancelar</button>
+                                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2">
+                                        <i data-lucide="save"></i>
+                                        <span>Guardar</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <!-- Otros paneles irían aquí -->
             </div>
         </main>
@@ -282,7 +355,10 @@
         </div>
     </div>
     
+    
     <!-- JavaScript -->
     <script src="./js/main.js"></script>
+    <script src="./js/inventario.js"></script>
+    <script src="./js/lotes.js"></script>
 </body>
 </html>

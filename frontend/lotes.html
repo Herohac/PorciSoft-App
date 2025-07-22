@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PorciSoft - Gestión de Lotes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 flex-shrink-0 bg-white border-r border-slate-200 flex flex-col">
+            <div class="h-16 flex items-center px-6 border-b border-slate-200">
+                <h1 class="text-xl font-bold text-green-600">PorciSoft</h1>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="index.html" class="nav-link">
+                    <i data-lucide="archive"></i>
+                    <span>Inventario</span>
+                </a>
+                <a href="lotes.html" class="nav-link active">
+                    <i data-lucide="box"></i>
+                    <span>Lotes</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i data-lucide="heart-pulse"></i>
+                    <span>Reproductivo</span>
+                </a>
+                 <a href="#" class="nav-link">
+                    <i data-lucide="trending-up"></i>
+                    <span>Engorde</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i data-lucide="syringe"></i>
+                    <span>Sanidad</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i data-lucide="file-text"></i>
+                    <span>Reportes</span>
+                </a>
+            </nav>
+
+            <div class="px-4 py-4 border-t border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
+                        <span>RP</span>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">RUIZ PIERO</p>
+                        <p class="text-xs text-slate-500">Administrador</p>
+                    </div>
+                    <button class="ml-auto text-slate-500 hover:text-slate-800">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 h-screen overflow-auto bg-slate-50 flex flex-col">
+            <header class="bg-white p-6 border-b border-slate-200">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold">Gestión de Lotes</h2>
+                        <p class="text-slate-500">Agrupa y organiza tus animales.</p>
+                    </div>
+                    <button id="add-lote-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-colors">
+                        <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                        <span>Nuevo Lote</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="flex-1 p-6 overflow-y-auto">
+                <div class="bg-white rounded-lg shadow-md">
+                    <table class="data-table min-w-full">
+                        <thead id="lote-table-head"></thead>
+                        <tbody id="lote-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="lote-modal" class="modal-backdrop">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg mx-4">
+            <div class="flex justify-between items-center border-b pb-3 mb-5">
+                <h3 id="lote-modal-title" class="text-xl font-bold">Registrar Nuevo Lote</h3>
+                <button id="close-lote-modal-btn" class="text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <form id="lote-form">
+                <input type="hidden" id="lote_id_form" name="id">
+                <div class="space-y-4">
+                    <div>
+                        <label for="nombre_lote" class="form-label">Nombre del Lote *</label>
+                        <input type="text" id="nombre_lote" name="nombre_lote" required class="form-input">
+                    </div>
+                    <div>
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" rows="3" class="form-input"></textarea>
+                    </div>
+                </div>
+                <div id="lote-form-response" class="mt-4 text-center text-sm font-semibold"></div>
+                <div class="flex justify-end gap-4 mt-6 border-t pt-4">
+                    <button type="button" id="cancel-lote-form-btn" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-2 px-4 rounded-lg">Cancelar</button>
+                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2">
+                        <i data-lucide="save"></i>
+                        <span>Guardar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="./js/lotes.js"></script>
+</body>
+</html>
